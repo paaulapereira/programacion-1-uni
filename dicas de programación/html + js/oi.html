@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Lista</h1>
+    <input type="text" size="15" maxlength="30" name="" id="texto">
+    <ul id="lista">
+      <li>1</l1>
+      <li>2</l1>
+      <li>3</l1>
+    </ul>
+    <button onclick="anadirelemento()"> Añadir Elemento</button>
+  </body>
+  <script type="text/javascript">
+    function anadirelemento(){
+
+      var valor = document.getElementById('texto').value;
+      var elemento = document.createElement("li");
+      var texto = document.createTextNode(valor);
+      elemento.appendChild(texto);
+      document.getElementById('lista').appendChild(elemento);
+    }
+  </script>
+</html>

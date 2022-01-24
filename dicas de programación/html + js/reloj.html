@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html"; charset="iso-8859-1">
+    <title> Mi Reloj</title>
+    <script type="text/javascript">
+      function clock() {
+        var data = new Date();
+        var horas = data.getHours();
+        var minutos = data.getMinutes();
+        var segundos = data.getSeconds();
+
+        if (horas < 10) {
+          horas = "0"+horas;
+        }
+        if (minutos < 10) {
+          minutos = "0"+minutos;
+        }
+        if (segundos < 10) {
+          segundos = "0"+segundos;
+        }
+        var html  = document.getElementById("clock");
+        html.innerHTML = horas + ":" + minutos +  ":" + segundos;
+      }
+      window.setInterval("clock()",1000);
+    </script>
+  </head>
+  <body onload="clock();" style="background-color: pink; font-family: courier; font-size: 250px; text-align:center;">
+    <div id="clock"> aqui jaz uma esperanca de um relogio</div>
+  </body>
+</html>

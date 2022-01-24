@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>BANANAS</title>
+  </head>
+  <body onload="bananas();">
+    <h1>BANANAS</h1>
+    <form class="" action="index.html" method="post">
+      <label for="Nombre">Nome: </label>
+      <input type="text" name="" value="" id="nome">
+      <label for="Edad">Idade: </label>
+      <input type="text" name="" value="" id="idade">
+      <label for="bananas" >Quantas bananas ja comeu hoje?</label>
+      <input type="text" name="" value="" id="quantas">
+      <button type="button" name="button">BANANE-SE</button>
+    </form>
+    <script type="text/javascript" src="./scripts/jquery.js"></script> <!-- NOTE: faz com que os códigos em jquery funcionem -->
+    <script type="text/javascript">
+      function bananas() {
+        var datos = {
+          nome: "Martha",
+          idade: "19 anos",
+          quantasB: "Comi 3 \"bananas\" hoje mas quero mais!",
+        };
+        console.log(JSON.stringify(datos));// NOTE: é pra entrar o json nos datos
+        $('#nome').val(datos.nome);
+        document.getElementById('idade').value = datos.idade;
+        document.getElementById('quantas').value = datos.quantasB;
+      }
+
+    </script>
+  </body>
+</html>

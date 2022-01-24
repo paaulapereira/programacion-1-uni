@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet" href="estilosoioi.css">
+    <title>LALALALALAL</title>
+  </head>
+  <body>
+    <h1>Formas de dizer Oi</h1>
+    <ul id="listaa">
+      <li>Olá</li>
+      <li>Hello</li>
+      <li>Bonjour</li>
+    </ul>
+    <input type="text" size="15" maxlength="30"  name="nombre" id="ola" > <!-- NOTE: cria caixa de texto pra colocar informações -->
+    <button id="botao" onclick="novostextos()" >Novas Formas</button> <!-- NOTE: cria o botão -->
+  </body>
+  <script type="text/javascript">
+  function novostextos() { // NOTE: essa função é pra toda vez que clica no botão se repetir isso
+    var novas = document.getElementById('ola').value; // NOTE: pega os elementos da caixa de texto e atribui o valor deles na variável
+    var textonovas = document.createTextNode(novas); // NOTE: cria um text node com os elementos daquela variável
+    var texto = document.createElement('li'); // NOTE: cria um novo elemento pra lista
+    texto.appendChild(textonovas); // NOTE: adiciona um elemento no text node
+    document.getElementById('listaa').appendChild(texto); // NOTE: adicona os elementos criados a lista
+    document.getElementById('ola').value = ""; // NOTE: pega tudo que foi escrito e cria
+  }
+  var ola= confirm("LLALALAALALALALALALALALALAL"); // NOTE: confirm é que nem um alerta mas pode ser confirmado ou não
+    if (ola) { // NOTE: função if atribui uma condição
+      alert("it works"); // NOTE: "se o ola for confirmado, aparece um alerta escrevendo it works"
+    }
+  </script>
+</html>

@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset= "utf-8" />
+    <title>Paula Pereira - Desarrollo Web</title>
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link href="https://fonts.googleapis.com/css?family=Niramit:200,300,400,500,700" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/estilo.css" />
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <!-- gráfico 1 (donut) -->
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      // todas as variáveis tem que estar dentro da função drawChart para funcionar o gráfico
+       function drawChart() {
+         // essas são as variáveis baseadas na base de dados do json
+         var edad18 = 0;
+         var edad19 = 0;
+         var edad20 = 0;
+         var edad21 = 0;
+         var edadDiferente = 0;
+         // isso é pra imprimir os dados que estão no json que eles criaram
+         var request = new XMLHttpRequest();
+         request.open('GET', 'http://localhost:3000/becarios', true);
+         // a função .onload serve para imprimir todo que está nela quando carrega a página
+         request.onload = function () {
+           var data = JSON.parse(this.response);
+           // Begin accessing JSON data here e todas as condições para imprimir os dados aqui
+           if (request.status >= 200 && request.status < 400) {
+             data.forEach(becario => {
+               switch (becario.edad) {
+                 case 18:
+                   edad18+=1;
+                   break;
+                  case 19:
+                    edad19+=1;
+                    break;
+                  case 20:
+                    edad20+=1;
+                  case 21:
+                    edad21+=1;
+                    break;
+                 default:
+                  edadDiferente+=1;
+               }
+             //  console.log(becario.edad)
+             });
+           } else {
+             console.log('error');
+           }
+           var data = google.visualization.arrayToDataTable([
+             ['Edad', 'Cantidad de personas'],
+             ['18',     edad18],
+             ['19',      edad19],
+             ['20', edad20],
+             ['21', edad21],
+             ['Otro',  edadDiferente],
+           ]);
+
+            var options = {
+              title: 'Edad de los becarios',
+              pieHole: 0.3,
+              colors: ['#ff9999','#12aeba','#b3effc','#a3b7ff','#e199e8'],
+              legend: 'left'
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+            chart.draw(data, options);
+         }
+         // depois de todos os dados estarem prontos têm que ser enviados para poder funcionar
+         request.send();
+       }
+    </script>
+    <!--gráfico 2 colunas  -->
+  <script type="text/javascript">
+    google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var year1 = 0;
+      var year2 = 0;
+      var year3 = 0;
+      var year4 = 0;
+      var request = new XMLHttpRequest();
+      request.open('GET', 'http://localhost:3000/becarios', true);
+      request.onload = function () {
+        var data = JSON.parse(this.response);
+        if (request.status >= 200 && request.status < 400) {
+          data.forEach(becario => {
+            switch (becario.year) {
+              case 1:
+                year1 +=1;
+                break;
+              case 2:
+                year2+=1;
+                break;
+              case 3:
+                year3+=1;
+                break;
+              case 4:
+                year4+=1;
+                break;
+              default:
+                console.log('error');
+              }
+          });
+
+      } else {
+        console.log('error');
+      }
+      var data = google.visualization.arrayToDataTable([
+        ["Año", "Número de alumnos", { role: "style" } ],
+        ["Primer", year1, "#fff699"],
+        ["Segundo", year2, "#b7ffa3"],
+        ["Tercer", year3, "#a3b7ff"],
+        ["Cuarto", year4, "color: #dd87ff"]
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "Año de los becarios",
+        bar: {groupWidth: "85%"},
+        legend: { position: "none" },
+        vAxis: {minValue: 0}
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+      chart.draw(view, options);
+    }
+    request.send();
+  }
+  </script>
+  <script type="text/javascript">
+     google.charts.load('current', {
+       'packages':['geochart'],
+       // Note: you will need to get a mapsApiKey for your project.
+       // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+       'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+     });
+     google.charts.setOnLoadCallback(drawRegionsMap);
+
+     function drawRegionsMap() {
+       var brazil = 0;
+       var venezuela = 0;
+       var colombia = 0;
+       var argetina = 0;
+       var bolivia = 0;
+       var chile = 0;
+       var ecuador = 0;
+       var guyanaFrancesa = 0;
+       var guyana = 0;
+       var peru = 0;
+       var paraguay = 0;
+       var suriname = 0;
+       var uruguay = 0;
+       var request = new XMLHttpRequest ();
+       request.open ('GET', 'http://localhost:3000/becarios', true);
+       request.onload = function () {
+         var data = JSON.parse(this.response);
+         if (request.status >= 200 && request.status <400) {
+           data.forEach(becario => {
+             // Argentina, Bolivia, Brasil, Chile, Colombia, Ecuador, Guyana Francesa, Guyana, Peru, Paraguay, Suriname, Uruguay, Venezuela
+             switch (becario.pais) {
+               case 'Brasil':
+                 brazil+=1;
+                 break;
+                case 'Venezuela':
+                  venezuela+=1;
+                  break;
+                case 'Colombia':
+                  colombia+=1;
+                  break;
+                case 'Argentina':
+                  argetina+=1;
+                  break;
+                case 'Bolivia':
+                  bolivia+=1;
+                    break;
+                case 'Chile':
+                    chile+=1;
+                    break;
+                case 'Ecuador':
+                    ecuador+=1;
+                      break;
+                case 'Guyana Francesa':
+                      guyanaFrancesa+=1;
+                        break;
+                case 'Guyana':
+                  guyana+=1;
+                  break;
+                case 'Peru':
+                  peru+=1;
+                  break;
+                case 'Paraguay':
+                  paraguay+=1;
+                  break;
+                case 'Suriname':
+                  suriname+=1;
+                  break;
+                case 'Uruguay':
+                  uruguay+=1;
+                  break;
+               default:
+                console.log('error');
+             }
+           });
+         }else {
+           console.log('error');
+         }
+
+       var data = google.visualization.arrayToDataTable([
+         ['País', 'Becarios'],
+         ['Brazil', brazil],
+         ['Venezuela', venezuela],
+         ['Colombia', colombia],
+         ['Argentina', argetina],
+         ['Bolivia', bolivia],
+         ['Chile', chile],
+         ['Ecuador', ecuador],
+         ['French Guiana', guyanaFrancesa],
+         ['Guyana', guyana],
+         ['Peru', peru],
+         ['Paraguay', paraguay],
+         ['Suriname', suriname],
+         ['Uruguay', uruguay],
+       ]);
+
+       var options = {
+         title: 'Becarios en Centroamerica',
+         sizeAxis: {},
+         colorAxis: {colors:[ 'white', '#ed9eb7','#e54e7d'], minValue: 0},
+         datalessRegionColor : '#dbd6d6',
+         region: '005',
+       };
+
+       var chart = new google.visualization.GeoChart(document.getElementById('regions_div2'));
+
+       chart.draw(data, options);
+     }
+     request.send();
+   }
+   </script>
+  <!-- gráfico 3 sobre mapa -->
+  <script type="text/javascript">
+     google.charts.load('current', {
+       'packages':['geochart'],
+       // Note: you will need to get a mapsApiKey for your project.
+       // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+       'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+     });
+     google.charts.setOnLoadCallback(drawRegionsMap);
+
+     function drawRegionsMap() {
+       var mexico = 0;
+       var panama = 0;
+       var elSalvador = 0;
+       var guatemala = 0;
+       var belize = 0;
+       var costaRica = 0;
+       var honduras = 0;
+       var nicaragua = 0;
+       var request = new XMLHttpRequest();
+         request.open('GET', 'http://localhost:3000/becarios', true);
+         request.onload = function () {
+           var data = JSON.parse(this.response);
+           if (request.status >= 200 && request.status < 400) {
+             data.forEach(becario => {
+               // Belize, Costa Rica, Guatemala, Honduras, Mexico, Nicaragua, Panama, El Salvador
+               switch (becario.pais) {
+                 case 'Mexico':
+                   mexico+=1;
+                   break;
+                  case 'Panama':
+                    panama+=1;
+                    break;
+                  case 'El Salvador':
+                    elSalvador+=1;
+                    break;
+                  case 'Guatemala':
+                    guatemala+=1;
+                    break;
+                  case 'Belize':
+                    belize+=1;
+                    break;
+                  case 'Costa Rica':
+                    costaRica+=1;
+                    break;
+                  case 'Honduras':
+                    honduras+=1;
+                    break;
+                  case 'Nicaragua':
+                    nicaragua+=1;
+                    break;
+                  default:
+                  console.log('error');
+               }
+            });
+         } else {
+           console.log('error');
+         }
+       var data = google.visualization.arrayToDataTable([
+         ['País', 'Becarios'],
+         ['Mexico', mexico],
+         ['Panama', panama],
+         ['El Salvador', elSalvador],
+         ['Guatemala', guatemala],
+         ['Belize', belize],
+         ['Costa Rica', costaRica],
+         ['Honduras', honduras],
+         ['Nicaragua', nicaragua]
+       ]);
+
+       var options = {
+         title: 'Becarios en Sudamerica',
+         colorAxis: {colors:[ 'white', '#21ba47'], minValue: 0},
+         datalessRegionColor : '#a0e5e3',
+         region: '013',
+       };
+
+       var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+       chart.draw(data, options);
+     }
+     request.send ();
+    }
+   </script>
+
+  </head>
+  <body>
+    <div class="header">
+      <div class="linea">
+        <header>
+          <div class="columna col 4">
+            <h1 class="logo">PaulaPereira</h1>
+          </div>
+          <div class="columna col8">
+            <nav>
+              <ul class="menu inline sin-marcador">
+                <li><a href="index.html">home</a></li>
+                <li><a href="clientes.html">clientes</a></li>
+                <li><a href="servicio.html">servicios</a></li>
+                <li><a href="sobre.html">sobre</a></li>
+                <li><a href="contato.html">contato</a></li>
+                <li><a href="graficoteste.html">grafico</a></li>
+              </ul>
+            </nav>
+          </div>
+        </header>
+      </div>
+    </div>
+    <div class="linea">
+        <div id="donutchart" class= "columna col3" style="width: 40%; height: 400px;" ></div>
+        <div id="columnchart_values" class="columna col3"  style="width:50%; height: 400px;"></div>
+        <div id="regions_div2" class="columna col3" style="width: 50%; height: 300px;"></div>
+        <div id="regions_div" class="columna col3" style="width: 40%; height: 300px;"></div>
+    </div>
+    <div class="contenido-extra">
+      <div class="linea">
+        <div class="columna col7">
+          <section>
+            <h2>Opinión de quién contrató</h2>
+            <p>Esa empresa no existe porque aún no tengo todos los conocimientos necesarios para trabajar en una y necesito texto para llenar ese espacio.</p>
+            <p>Esa empresa no existe porque aún no tengo todos los conocimientos necesarios para trabajar en una y necesito texto para llenar ese espacio.</p>
+            <p>Esa empresa no existe porque aún no tengo todos los conocimientos necesarios para trabajar en una y necesito texto para llenar ese espacio.</p>
+            <p><em>Maria Teresina - Familia LTDA</em></p>
+          </section>
+        </div>
+        <div class="columna col5">
+          <h3>Últimas noticias</h3>
+          <ul class="sin-marcador sin-padding noticias">
+            <li>
+              <img src="img/noticias.jpg" alt="">
+              <h4>Título de la noticia</h4>
+              <p>No hay una noticia para ser colocada aquí.<a href=""> Leer más&raquo;</a></p>
+            </li>
+            <li>
+              <img src="img/noticias.jpg" alt="">
+              <h4>Título de la noticia</h4>
+              <p>No hay una noticia para ser colocada aquí.<a href=""> Leia más&raquo;</a></p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="linea">
+        <footer>
+          <div class="columna col 12">
+            <span>&copy; 2018- Paula Pereira - Desarrollo Web</span>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>

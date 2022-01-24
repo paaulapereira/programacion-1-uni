@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="listanombres.css"> <!-- NOTE: conecta ao arquivo criado em css pra decoração -->
+    <title>AMIGUINHOS</title>
+  </head>
+
+  <body>
+    <h1>  MEUS AMIGUINHOS </h1>
+    <ul id="oi"></ul> <!-- NOTE: ul é pra cirar uma lista e a id foi para poder atribuir valores a ela -->
+    <input type="text" id="ola" placeholder="Nombre"> <!-- NOTE: o input é o espaço em branco pra colocar os nomes dos amiguinhos -->
+    <input type="text" id="javier" placeholder="Número">
+    <button class="lala" onclick="novosContatos()">Seja Meu Amiguinho</button> <!-- NOTE: cria um botão e o onclick serve pra atribuir a função criada em js nesse caso a novosContatos pra quando clicar nele acontecer tudo que a função estabelece  -->
+
+  </body>
+
+  <script type="text/javascript">
+
+    var amigos = ["Martha", "Pablo", "Alfonso", "Fernando", "Milton"]; // NOTE: isso é um array, uma váriavel com mais de um valor atribuido
+    var novosAmigos = "";
+// NOTE: esse for é um bucle que vai ser repetido até que todas as váriaveis do array sejam colocadas.
+      for (var i = 0; i < amigos.length; i++) {
+        novosAmigos += "<button id='agua' onclick='novoBotao(`"+amigos[i]+"`)'>" + amigos[i] + "</button>"; // NOTE: isso é pra adicionar os elementos de amigos em elementos de lista, os li.
+      }// NOTE: a função onclick foi adicionada pra cada vez que clique o botão aconteça ela, e as aspas são pra não dar erros
+
+      function novoBotao(amigos) {
+        alert(amigos);
+      }
+
+    document.getElementById('oi').innerHTML = novosAmigos; // NOTE: dentro da lista vão ser adicionados os elementos que estão em amigos 1
+
+    function novosContatos() { // NOTE: essa função é estabelecida toda vez que alguém clica o botão
+      var novos = document.getElementById('ola').value; // NOTE: essa variável é pra pegar os dados que foram postos no botão e atribuírem um valor a eles.
+      var exist = false; // NOTE: essa variável serve para criar a condição de existência que vai ser atribuida no if abaixo, o false significa que o valor dela é falso.
+
+      for (var i = 0; i < amigos.length; i++) { // NOTE: esse bucle é pra criar a condição de não poder repetir nomes.
+        if (amigos[i].toLowerCase() == novos.toLowerCase()) { // NOTE:  'se algúm nome novo que for escrito é igual a um nome existente'
+          exist = true; // NOTE: se os nomes forem iguais a variável vai ser verdade, ou seja o valor falso vai ser atribuído, e vai aparecer o alerta avisando.
+          alert("Você já tem esse amigo, existem muitos novos pra fazer por aí :)");
+        }
+      }
+      if (!exist) { // NOTE: o '!' significa tipo "senão" ; ou seja, se aquela variável não for verdade, os novos nomes vão ser adicionado na lista
+        var bananas = document.createTextNode(novos); // NOTE:  cria um text node com os elementos daquela variável
+        var daniel = document.createElement("button"); // NOTE:  cria um novo elemento pra lista
+
+        var pizza = document.getElementById('javier').value;
+
+        daniel.onclick = function () { // NOTE: isso faz que quando se clique na variavel 'daniel'(o onclick) se crie uma função sem nome.
+            alert(novos + " y su teléfono es " + pizza); // NOTE: e nessa função tem um alerta com a variável dos novos nomes
+        };
+        daniel.style.cssText ='border: none;cursor: pointer;  border-radius: 5px 5px;background-color: #ff9999;font-family: "Inconsolata", monospace;color: black;min-width: 50px;height: 30px; padding: 10px; margin: 3px;' // NOTE: para estilizar os novos botões
+        daniel.appendChild(bananas); // NOTE: adiciona um elemento a variavel
+        document.getElementById('oi').appendChild(daniel); // NOTE: adiciona todos os elementos da variável (no caso daniel) na lista
+        amigos.push(novos); // NOTE: faz com que agrege os novos nomes ao array pra não poder repetir os novos amiguinhos
+        document.getElementById('ola').value =""; // NOTE: faz com que depois que o botão seja clicado, volte a ficar todo em branco
+        document.getElementById('javier').value ="";
+
+      }
+        }
+  </script>
+</html>

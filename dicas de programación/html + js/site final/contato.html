@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset= "utf-8" />
+    <title>Paula Pereira - Desarrollo Web</title>
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link href="https://fonts.googleapis.com/css?family=Niramit:200,300,400,500,700" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/estilo.css" />
+  </head>
+  <body onload="cargar();">
+    <div class="header">
+      <div class="linea">
+        <header>
+          <div class="columna col 4">
+            <h1 class="logo">PaulaPereira</h1>
+          </div>
+          <div class="columna col8">
+            <nav>
+              <ul class="menu inline sin-marcador">
+                <li><a href="index.html">home</a></li>
+                <li><a href="clientes.html">clientes</a></li>
+                <li><a href="servicio.html">servicios</a></li>
+                <li><a href="sobre.html">sobre</a></li>
+                <li><a href="contato.html">contato</a></li>
+                <li><a href="graficoteste2.html">grafico</a></li>
+              </ul>
+            </nav>
+          </div>
+        </header>
+      </div>
+    </div>
+    <div class="linea">
+      <section>
+        <div class="columna col5 sidebar">
+          <h3>Localización</h3>
+          <img src="img/mapa.jpg" alt="">
+          <ul class="sin-padding sin-marcador">
+            <li>Avenida Beiramar Norte, 2192</li>
+            <li>Barrio Centro</li>
+            <li>Brasil</li>
+          </ul>
+          <h3>Contacto Directo</h3>
+          <ul class="sin-padding sin-marcador">
+            <li>Teléfono:<strong> +55(48)9900-0099</strong> </li>
+            <li>Email:<strong> paula123@contato.com.br</strong> </li>
+          </ul>
+        </div>
+        <div class="columna col7 contato">
+          <h2>Deja tu opnión</h2>
+          <form >
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="nombre" id="nombre" />
+            <label for="email">Email:</label>
+            <input type="text" name="email" value="" id="email"/>
+            <label for="asunto">Asunto: </label>
+            <input type="text" name="asunto" value="" id="asunto" />
+            <label for="mensaje">Mensaje:</label>
+            <textarea name="mensaje" id="mensaje"></textarea>
+            <input type="submit" class="boton" name="enviar" value="Enviar Mensaje &raquo;"/>
+          </form>
+        </div>
+      </section>
+    </div>
+    <div class="contenido-extra">
+      <div class="linea">
+        <div class="columna col7">
+          <section>
+            <h2>Otra forma de Contacto</h2>
+            <p>Probablemente estaré viajando por el mundo o en una isla desierta tomando un sol y relajándose de vacacciones, entonces puedes intentar hablar conmigo por:</p>
+            <ol>
+              <li>Telepatía</li>
+              <li>Paloma mensajera</li>
+            </ol>
+            <p>Pero no garanto efectividad :(</p>
+          </section>
+        </div>
+        <div class="columna col5">
+          <h3>Últimas noticias</h3>
+          <ul class="sin-marcador sin-padding noticias">
+            <li>
+              <img src="img/noticias.jpg" alt="">
+              <h4>Título de la noticia</h4>
+              <p>No hay una noticia para ser colocada aquí.<a href=""> Leer más&raquo;</a></p>
+            </li>
+            <li>
+              <img src="img/noticias.jpg" alt="">
+              <h4>Título de la noticia</h4>
+              <p>No hay una noticia para ser colocada aquí.<a href=""> Leer más&raquo;</a></p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="linea">
+        <footer>
+          <div class="columna col 12">
+            <span>&copy; 2018- Paula Pereira - Desarrollo Web</span>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <script type="text/javascript">
+      function cargar(){
+        var datos = {
+          nombre: "Paula",
+          email: "paula@gmail.com",
+          asunto: "oi",
+          mensaje: "OI OI OI OI OI não sei o que falar"
+        }
+        console.log(JSON.stringify(datos));
+        document.getElementById('nombre').value= datos.nombre;
+        document.getElementById('email').value= datos.email;
+        document.getElementById('asunto').value = datos.asunto;
+        document.getElementById('mensaje').value = datos.mensaje;
+
+      }
+
+    </script>
+  </body>
+</html>

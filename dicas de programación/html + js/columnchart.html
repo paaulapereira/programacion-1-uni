@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- <meta charset= "utf-8" />
+    <title>Paula Pereira - Desarrollo Web</title>
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link href="https://fonts.googleapis.com/css?family=Niramit:200,300,400,500,700" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/estilo.css" /> -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+     google.charts.load('current', {'packages':['bar']});
+     google.charts.setOnLoadCallback(drawChart);
+
+     function drawChart() {
+       var data = google.visualization.arrayToDataTable([
+         ['Día', 'Horas', { role: 'style' }],
+         ['Lunes', 8, 'red'],
+         ['Martes', 10, 'red'],
+         ['Miércoles', 6, 'color:pink'],
+         ['Jueves', 8, 'fill-color: pink'],
+         ['Viernes', 8, 'color: pink']
+       ]);
+
+       var options = {
+         chart: {
+           title: 'Horas en Uneatlantico',
+           subtitle: 'por días de la semana',
+         }
+       };
+
+       var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+       chart.draw(data, google.charts.Bar.convertOptions(options));
+     }
+   </script>
+  </head>
+  <body>
+     <!-- essa é a barra de estilo inicial -->
+    <!-- <div class="header">
+      <div class="linea">
+        <header>
+          <div class="columna col 4">
+            <h1 class="logo">PaulaPereira</h1>
+          </div>
+          <div class="columna col8">
+            <nav>
+              <ul class="menu inline sin-marcador">
+                <li><a href="index.html">home</a></li>
+                <li><a href="clientes.html">clientes</a></li>
+                <li><a href="servicio.html">servicios</a></li>
+                <li><a href="sobre.html">sobre</a></li>
+                <li><a href="contato.html">contato</a></li>
+                <li><a href="graficoteste2.html">grafico</a></li>
+              </ul>
+            </nav>
+          </div>
+        </header>
+      </div>
+    </div> -->
+    <!-- aqui acaba a barra de estilo -->
+    <!-- <div class="linea"> -->
+      <section>
+        <!-- aqui é o espaço em branco do meio para adiconar as coisas -->
+        <div id="columnchart_material" style="width: 500px; height: 300px;"></div>
+      </section>
+    </div>
+    <!-- aqui e a baara debaixo com as super notícias -->
+    <!-- <div class="contenido-extra">
+      <div class="linea">
+        <div class="columna col7">
+          <section>
+            <h2>Opinión de quién contrató</h2>
+            <p>Esa empresa no existe porque aún no tengo todos los conocimientos necesarios para trabajar en una y necesito texto para llenar ese espacio.</p>
+            <p>Esa empresa no existe porque aún no tengo todos los conocimientos necesarios para trabajar en una y necesito texto para llenar ese espacio.</p>
+            <p>Esa empresa no existe porque aún no tengo todos los conocimientos necesarios para trabajar en una y necesito texto para llenar ese espacio.</p>
+            <p><em>Maria Teresina - Familia LTDA</em></p>
+          </section>
+        </div>
+        <div class="columna col5">
+          <h3>Últimas noticias</h3>
+          <ul class="sin-marcador sin-padding noticias">
+            <li>
+              <img src="img/noticias.jpg" alt="">
+              <h4>Título de la noticia</h4>
+              <p>No hay una noticia para ser colocada aquí.<a href=""> Leer más&raquo;</a></p>
+            </li>
+            <li>
+              <img src="img/noticias.jpg" alt="">
+              <h4>Título de la noticia</h4>
+              <p>No hay una noticia para ser colocada aquí.<a href=""> Leia más&raquo;</a></p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="linea">
+        <footer>
+          <div class="columna col 12">
+            <span>&copy; 2018- Paula Pereira - Desarrollo Web</span>
+          </div>
+        </footer>
+      </div>
+    </div> -->
+  </body>
+</html>

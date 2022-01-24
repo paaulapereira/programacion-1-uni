@@ -1,0 +1,13 @@
+body{
+  font-family: 'Niramit', sans-serif;
+  background-color: #bcf8ff;
+  margin: 150px 500px;
+
+}
+#botao{
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  background-color: #eaade7;
+  border-radius: 5px;
+}

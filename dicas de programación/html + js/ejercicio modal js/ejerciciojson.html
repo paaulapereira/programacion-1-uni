@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <link rel="stylesheet" href="./estilos/estilo.css">
+    <!-- <script src="./scripts/jquery.js" charset="utf-8"></script> -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+
+
+  <h2>HTML Tabla de Json, Ordenada por Año de Publicacion</h2>
+
+
+            <!-- Trigger the modal with a button -->
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" onclick="drawJson('before');">Antes de 1900</button>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" onclick="drawJson('after');">Después de 1900</button>
+
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">HTML Table</h4>
+              </div>
+              <div class="modal-body">
+                <p>
+                  <table id="learning-table" class="table">
+                </table>
+
+                <div id="deixarMelhor">
+
+                  <h2>Know Others?</h2>
+                  <label for="">Title</label>
+                  <input type="text" name="" value="" id="inpTitle">
+
+                  <label for="">Author</label>
+                  <input type="text" name="" value="" id="inpAuthor"><br>
+
+                  <label for="">Publication</label>
+                  <input type="text" name="" value="" id="inpPublication">
+
+                  <label for="">Country</label>
+                  <input type="text" name="" value="" id="inpCountry"><br>
+
+                  <button type="button" name="button" onclick="newBook();" class="butt"> Add New Book </button>
+
+                  <div id="editar">
+
+                  <h2>Edit</h2>
+                  <label for="">Title</label>
+                  <input type="text" name="" value="" id="inpEdTitle">
+
+                  <label for="">Author</label>
+                  <input type="text" name="" value="" id="inpEdAuthor"><br>
+
+                  <label for="">Publication</label>
+                  <input type="text" name="" value="" id="inpEdPublication">
+
+                  <label for="">Country</label>
+                  <input type="text" name="" value="" id="inpEdCountry"><br>
+
+                  </div>
+                </div>
+              </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+    </div>
+    <script src="./scripts/novojson.js" charset="utf-8"></script>
+
+  </body>
+</html>
+
+
+
+<!-- NOTE:
+"<tr>" é abrindo as colunas e depois tem que fechar
+"<td>" são as colunas tipo titulo e tudo isso
+ -->

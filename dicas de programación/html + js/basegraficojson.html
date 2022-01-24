@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <!-- gráfico 1 (donut) -->
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      // todas as variáveis tem que estar dentro da função drawChart para funcionar o gráfico
+       function drawChart() {
+         // essas são as variáveis baseadas na base de dados do json
+         var edad18 = 0;
+         var edad19 = 0;
+         var edad20 = 0;
+         var edadDiferente = 0;
+         // isso é pra imprimir os dados que estão no json que eles criaram
+         var request = new XMLHttpRequest();
+         request.open('GET', 'http://localhost:3000/becarios', true);
+         // a função .onload serve para imprimir todo que está nela quando carrega a página
+         request.onload = function () {
+           var data = JSON.parse(this.response);
+           // Begin accessing JSON data here e todas as condições para imprimir os dados aqui
+           if (request.status >= 200 && request.status < 400) {
+             data.forEach(becario => {
+               if(becario.edad == 18)
+               {
+                 edad18+=1;
+               }
+               else if(becario.edad == 19){
+                 edad19+=1;
+               }
+               else if(becario.edad == 20){
+                 edad20+=1;
+               }
+               else if(becario.edad < 18 || becario.edad > 20){
+                 edadDiferente+=1;
+               }
+             //  console.log(becario.edad)
+             });
+           } else {
+             console.log('error');
+           }
+           var data = google.visualization.arrayToDataTable([
+             ['Edad', 'Cantidad de personas'],
+             ['18',     edad18],
+             ['19',      edad19],
+             ['20', edad20],
+             ['Otro',  edadDiferente],
+           ]);
+
+            var options = {
+              title: 'Edad de los becarios',
+              pieHole: 0.3,
+              colors: ['#ff9999','#12aeba','#b3effc','#e199e8'],
+              legend: 'left'
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+            chart.draw(data, options);
+         }
+         // depois de todos os dados estarem prontos têm que ser enviados para poder funcionar
+         request.send();
+       }
+    </script>
+  </head>
